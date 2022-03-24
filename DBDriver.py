@@ -1,3 +1,4 @@
+from multiprocessing.dummy import connection
 import psycopg2
 from config import configParser
 
@@ -18,6 +19,20 @@ def connect():
     except (Exception, psycopg2.Error) as error:
         print(error)
 
+def store_password(password, username, email, app_name, url):
+    try:
+        connection = connect()
+        cursor = connection.cursor()
+
+        to_insert = (password, username, email, app_name, url)
+
+        cursor.execute(INSERT_QUERY, to_insert)
+        connection.commit()
+    
+    except(Exception, psycopg2.Error) as error:
+        print(error)
+
+
 
 def find_password(app_name):
     try:
@@ -27,7 +42,7 @@ def find_password(app_name):
         sql = SELECT_QUERY % (app_name)
         cursor.execute(sql)
 
-        conn = connection.commit()
+        connection.commit()
         result = cursor.fetchone()
         
         print('Password: ')
