@@ -1,6 +1,28 @@
 import psycopg2
 from config import config
 
+
+#Function used to connecto to the database
+def connect():
+    try:
+        params = config()
+        print('Connecting to postgresql server...')
+        connection = psycopg2.connect(**params)
+        
+        print('...connection successful!')
+        return connection
+    
+    except (Exception, psycopg2.Error) as error:
+        print(error)
+
+
+
+
+
+
+
+
+###########################TEST METHODS#####################################
 def test_connection():
     """Test connection to postgresql server"""
 
