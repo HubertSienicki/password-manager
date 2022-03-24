@@ -1,4 +1,4 @@
- 
+from DBDriver import find_password
 
 #Defining the main menu
 def menu():
@@ -13,7 +13,11 @@ def menu():
 
 def create():
     print("Create")
+
 def find():
-    print("Find")
+    print("Please, provide the name of an app you want to find the password for")
+    app_name = input(': ')
+    find_password(app_name)
+
 def find_accounts():
     print("Find_accounts")

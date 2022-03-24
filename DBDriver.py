@@ -3,6 +3,7 @@ from config import configParser
 
 
 SELECT_QUERY = """SELECT password FROM accounts WHERE app_name = '%s'"""
+INSERT_QUERY = """INSERT INTO accounts (password, username, email, app_name, url) VALUES(%s, %s, %s, %s, %s)"""
 
 #Function used to connect to the database
 def connect():
@@ -20,9 +21,18 @@ def connect():
 
 def find_password(app_name):
     try:
-        connection = connection()
+        connection = connect()
         cursor = connection.cursor()
-    
+        
+        sql = SELECT_QUERY % (app_name)
+        cursor.execute(sql)
+
+        conn = connection.commit()
+        result = cursor.fetchone()
+        
+        print('Password: ')
+        print(result[0])
+
     except(Exception, psycopg2.Error) as error:
         print(error)
 

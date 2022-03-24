@@ -1,4 +1,3 @@
-
 from secret_key import get_secret_key
 from Interface import menu, create, find, find_accounts
 
