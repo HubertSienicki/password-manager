@@ -1,7 +1,6 @@
 from config import config
+from DBDriver import test_connection
 
 def main():
-    cg = config()
-    for i in cg:
-        print(i)
+    test_connection()
 main()
