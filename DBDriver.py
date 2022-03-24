@@ -10,10 +10,14 @@ INSERT_QUERY = """INSERT INTO accounts (password, username, email, app_name, url
 def connect():
     try:
         params = configParser()
+        print('-'*30)
         print('Connecting to postgresql server...')
         connection = psycopg2.connect(**params)
         
         print('...connection successful!')
+        print('-'*30)
+        print('')
+        
         return connection
     
     except (Exception, psycopg2.Error) as error:
@@ -45,8 +49,10 @@ def find_password(app_name):
         connection.commit()
         result = cursor.fetchone()
         
+        print('-'*30)
         print('Password: ')
         print(result[0])
+        print('')
 
     except(Exception, psycopg2.Error) as error:
         print(error)
@@ -63,7 +69,7 @@ def find_users(user_email):
 
         result = cursor.fetchall()
 
-        print('')
+        print('-'*30)
         print('RESULT')
         print('')
 

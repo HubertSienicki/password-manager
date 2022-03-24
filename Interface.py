@@ -6,7 +6,7 @@ ALPHABET = ('abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTYVWXYZ', '0123456
 #Defining the main menu
 def menu():
     print('-'*30)
-    print(('-'*13) + 'Menu'+ ('-' *13))
+    print(('-'*13) + 'Menu' + ('-' *13))
     print('1. Store new password')
     print('2. Find all sites and apps connected to an email')
     print('3. Find a password for a site or app')
@@ -52,6 +52,7 @@ def generate():
     length = input(': ')
     tempPwd = passwd_generator(length)
     
+    print('-'*30)
     print('Your new password: ')
     print(tempPwd)
     print('')

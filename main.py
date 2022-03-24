@@ -13,12 +13,10 @@ def main():
         print('no luck')
         exit() 
 
-    flag = True
+    choice = menu() 
+    
+    while choice != 'q': 
 
-    while flag:
-        choice = menu()
-        if choice == 'q':
-            flag = False
         if choice == '1':
             store()
         if choice == '2':
@@ -27,8 +25,10 @@ def main():
             find()
         if choice == '4':
             generate()
+            choice = menu() #idk why this works????????????????
         else:
             choice = menu()
+
     exit()
 
 
