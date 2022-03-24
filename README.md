@@ -1,5 +1,6 @@
 # password-manager
 I need a password manager.
+Because who wants to remember 100000 different passwords
 ## Authors
 
 - [@Hubert Sienicki](https://github.com/HubertSienicki)
