@@ -1,4 +1,4 @@
-from DBDriver import find_password, store_password
+from DBDriver import find_password, store_password, find_users
 
 #Defining the main menu
 def menu():
@@ -40,7 +40,9 @@ def find():
     find_password(app_name)
 
 def find_accounts():
-    print("Find_accounts")
+    print("Please provide the emial that you want to find accounts for")
+    user_email = input(': ')
+    find_users(user_email)
 
 def generate():
     pass

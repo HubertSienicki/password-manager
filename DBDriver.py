@@ -51,7 +51,30 @@ def find_password(app_name):
     except(Exception, psycopg2.Error) as error:
         print(error)
 
+def find_users(user_email):
+    data = ('Password: ', 'Email: ', 'Username: ', 'url: ', 'App/Site name: ')
+    try:
+        connection = connect()
+        cursor = connection.cursor()
+        
+        select_query = """ SELECT * FROM accounts WHERE email = '""" + user_email + "'"
+        cursor.execute(select_query, user_email)
+        connection.commit()
 
+        result = cursor.fetchall()
+
+        print('')
+        print('RESULT')
+        print('')
+
+        for row in result:
+            for i in range(0, len(row) - 1):
+                print(data[i] + row[i])
+            print('')
+            print('-'*30)
+    
+    except(Exception, psycopg2.Error) as error:
+        print(error)
 
 
 
