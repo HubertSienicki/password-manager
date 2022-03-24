@@ -13,8 +13,12 @@ def main():
         print('no luck')
         exit() 
 
-    choice = menu()
-    while choice != 'q':
+    flag = True
+
+    while flag:
+        choice = menu()
+        if choice == 'q':
+            flag = False
         if choice == '1':
             store()
         if choice == '2':
@@ -22,9 +26,11 @@ def main():
         if choice == '3':
             find()
         if choice == '4':
-            generate()    
+            generate()
         else:
             choice = menu()
     exit()
 
-main()
+
+if __name__ == '__main__':
+    main() 

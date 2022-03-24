@@ -1,4 +1,7 @@
+import random
 from DBDriver import find_password, store_password, find_users
+
+ALPHABET = ('abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTYVWXYZ', '0123456789', '(,._-*~"<>/|!@#$%^&)+=')
 
 #Defining the main menu
 def menu():
@@ -40,9 +43,30 @@ def find():
     find_password(app_name)
 
 def find_accounts():
-    print("Please provide the emial that you want to find accounts for")
+    print("Please provide the email that you want to find accounts for")
     user_email = input(': ')
     find_users(user_email)
 
 def generate():
-    pass
+    print("Please provide the length of password you want to generate")
+    length = input(': ')
+    tempPwd = passwd_generator(length)
+    
+    print('Your new password: ')
+    print(tempPwd)
+    print('')
+
+
+def passwd_generator(length):
+    chars = []
+    num = int(length)
+
+    while len(chars) < num:
+        m = random.randint(0, len(ALPHABET) - 1)
+        alpha =  ALPHABET[m]
+        n = random.randint(0, len(alpha) - 1)
+        chars.append(ALPHABET[m][n])
+
+
+    return ''.join(chars)
+        
