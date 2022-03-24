@@ -1,5 +1,5 @@
 from secret_key import get_secret_key
-from Interface import menu, create, find, find_accounts, generate
+from Interface import menu, store, find, find_accounts, generate
 
 def main():
     secret = get_secret_key()
@@ -16,7 +16,7 @@ def main():
     choice = menu()
     while choice != 'q':
         if choice == '1':
-            create()
+            store()
         if choice == '2':
             find_accounts()
         if choice == '3':
