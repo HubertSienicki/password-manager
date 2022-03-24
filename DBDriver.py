@@ -1,11 +1,13 @@
 import psycopg2
-from config import config
+from config import configParser
 
 
-#Function used to connecto to the database
+SELECT_QUERY = """SELECT password FROM accounts WHERE app_name = '%s'"""
+
+#Function used to connect to the database
 def connect():
     try:
-        params = config()
+        params = configParser()
         print('Connecting to postgresql server...')
         connection = psycopg2.connect(**params)
         
@@ -16,7 +18,13 @@ def connect():
         print(error)
 
 
-
+def find_password(app_name):
+    try:
+        connection = connection()
+        cursor = connection.cursor()
+    
+    except(Exception, psycopg2.Error) as error:
+        print(error)
 
 
 
@@ -28,7 +36,7 @@ def test_connection():
 
     conn = None
     try:
-        params = config()
+        params = configParser()
 
         #Connect to postgresql server
         print("Connecting to postgresql server...")
@@ -61,7 +69,7 @@ def test_connection():
 def test_add():
     try:
 
-        params = config()
+        params = configParser()
         print("Connecting to postgresql server...")
         conn = psycopg2.connect(**params)
         
@@ -84,7 +92,7 @@ def test_add():
 def test_delete():
     try:
 
-        params = config()
+        params = configParser()
         print('Connection to postgresql server...')
         conn = psycopg2.connect(**params)
 
