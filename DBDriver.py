@@ -58,7 +58,7 @@ def find_password(app_name):
         print(error)
 
 def find_users(user_email):
-    data = ('Password: ', 'Email: ', 'Username: ', 'url: ', 'App/Site name: ')
+    data = ('Password: ', 'Username: ', 'Email: ', 'url: ', 'App/Site name: ')
     try:
         connection = connect()
         cursor = connection.cursor()
