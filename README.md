@@ -36,7 +36,7 @@ Because who wants to remember 100000 different passwords
   cd cloned/project/directory
 ```
 
-4. Make sure you edited the source according to point Prerequisites
+4. Make sure you edited the source according to Prerequisites
 
 5. Compile and run
 
