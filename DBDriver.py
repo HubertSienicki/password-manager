@@ -1,10 +1,11 @@
-from multiprocessing.dummy import connection
 import psycopg2
 from config import configParser
 
 
 SELECT_QUERY = """SELECT password FROM accounts WHERE app_name = '%s'"""
+SELECT_ALL_QUERY = "SELECT * FROM accounts"
 INSERT_QUERY = """INSERT INTO accounts (password, username, email, app_name, url) VALUES(%s, %s, %s, %s, %s)"""
+remove_query = """DELETE FROM accounts WHERE password = %s and username = %s and email = %s and app_name = %s and url = %s"""
 
 #Function used to connect to the database
 def connect():
@@ -22,6 +23,33 @@ def connect():
     
     except (Exception, psycopg2.Error) as error:
         print(error)
+
+def remove_password():
+    result = find_all()
+    data = []
+
+    try:
+        print('Please, select the id to remove from the database')
+        to_removeID = int(input(': '))
+    
+        for row in result:
+            data = row
+            
+            
+        print('Removing password from database...')
+        connection = connect()
+        cursor = connection.cursor()
+        cursor.execute(remove_query, data)
+        connection.commit()
+
+        print('...Password was removed successfully!')
+
+
+    except(Exception, psycopg2.Error) as error:
+        print(error)
+
+
+
 
 def store_password(password, username, email, app_name, url):
     try:
@@ -58,7 +86,9 @@ def find_password(app_name):
         print(error)
 
 def find_users(user_email):
+
     data = ('Password: ', 'Username: ', 'Email: ', 'url: ', 'App/Site name: ')
+    
     try:
         connection = connect()
         cursor = connection.cursor()
@@ -76,9 +106,44 @@ def find_users(user_email):
         for row in result:
             for i in range(0, len(row) - 1):
                 print(data[i] + row[i])
+
             print('')
             print('-'*30)
     
+    except(Exception, psycopg2.Error) as error:
+        print(error)
+
+
+def find_all():
+    passID = 1
+    data = ('ID: ', 'Password: ', 'Username: ', 'Email: ', 'url: ', 'App/Site name: ')
+
+    try:
+        connection = connect()
+        cursor = connection.cursor()
+        cursor.execute(SELECT_ALL_QUERY)
+        connection.commit()
+        
+        result = cursor.fetchall()
+
+        print('-'*30)
+        print('RESULT')
+        print('')
+
+        for row in result:
+            for i in range(0, len(row) - 1):
+                if(i == 0):
+                    print(data[i], passID)
+                    passID += 1
+                    print(data[i + 1] + row[i])
+                else:     
+                    print(data[i + 1] + row[i])
+
+            print('')
+            print('-'*30)
+
+        return result
+
     except(Exception, psycopg2.Error) as error:
         print(error)
 

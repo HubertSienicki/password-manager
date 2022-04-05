@@ -1,5 +1,5 @@
 import random
-from DBDriver import find_password, store_password, find_users
+from DBDriver import find_password, store_password, find_users, remove_password
 
 ALPHABET = ('abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTYVWXYZ', '0123456789', '(,._-*~"<>/|!@#$%^&)+=')
 
@@ -10,10 +10,15 @@ def menu():
     print('1. Store new password')
     print('2. Find all sites and apps connected to an email')
     print('3. Find a password for a site or app')
-    print('4. Generate a password for a site or app')
+    print('4. Remove a password')
+    print('5. Generate a password for a site or app')
     print('q. Exit')
     print('-'*30)
     return input(': ')
+
+def remove():
+    print('Please select an id to remove')
+    remove_password()
 
 def store():
     print("Please provide the name of the site you want to store password for")

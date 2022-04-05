@@ -1,5 +1,5 @@
 from secret_key import get_secret_key
-from Interface import menu, store, find, find_accounts, generate
+from Interface import menu, store, find, find_accounts, generate, remove
 
 def main():
     secret = get_secret_key()
@@ -24,6 +24,8 @@ def main():
         if choice == '3':
             find()
         if choice == '4':
+            remove()
+        if choice == '5':
             generate()
             choice = menu() #idk why this works????????????????
         else:
